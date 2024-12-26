@@ -1,0 +1,340 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{anyfontsize}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{mdframed}
+\usepackage{hyperref}  % Add this line for hyperlinks
+
+\usepackage{xcolor}
+
+% Standard colors defined below
+\definecolor{offwhite}{RGB}{240, 240, 240}
+\definecolor{commentgreen}{RGB}{0, 128, 0}
+\definecolor{keywordblue}{RGB}{0, 0, 255}
+\definecolor{numberred}{RGB}{255, 0, 0}
+\definecolor{stringviolet}{RGB}{128, 0, 128}
+\definecolor{basicblack}{RGB}{0, 0, 0}
+
+% Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{offwhite},
+  commentstyle=\color{commentgreen},
+  keywordstyle=\color{keywordblue},
+  numberstyle=\tiny\color{numberred},
+  stringstyle=\color{stringviolet},
+  basicstyle=\ttfamily\footnotesize\color{basicblack},
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  emphstyle={\color{black}},
+  morekeywords={constexpr}
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{mediumtaupe}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
+\title{\Huge\textbf{Quiz 4 Assignment}}
+
+\author{
+    \large \textbf{MINHAJUL ABEDIN BHUIYAN}\\
+    \textbf{ID: 210042148}\\
+    Department: Computer Science \& Engineering\\
+    Program: Software Engineering\\
+    \large ISLAMIC UNIVERSITY OF TECHNOLOGY\\ 
+    Data Structure (CSE 4303)\\\\
+    \\\\Topic: Introduction to data structures, 
+    \\concepts of efficiency, elementary 
+    \\data structures: arrays,
+    \\records, pointers, examples of random accessing.\\\\\\
+}
+\date{31 December, 2023}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\begin{abstract}
+\textbf{This article provides a formal yet accessible examination of data structures, introducing the core principles of efficiency and essential structures such as arrays, records, and pointers. Through real-world examples, the concept of random accessing is elucidated, offering readers a practical understanding. The LaTeX-crafted document employs a structured approach, guiding individuals through key concepts, operations, and solutions. Whether one is new to the subject or seeking a comprehensive review, this article endeavors to present data structures in a clear, formal, and widely understandable manner.}
+\end{abstract}
+
+\newpage
+
+\section*{Story/Realistic problem Scenario}
+
+\textbf{The Algorithmic Alchemist}
+In the dynamic city of Algorithmica, financial virtuoso Alice stumbled upon an ancient manuscript promising untold riches through a cryptic sequence of numbers. In a quest fueled by curiosity and ambition, she unleashed a powerful program to decipher the hidden code and unlock the maximum subarray sum.
+\subsection*{Input-Output}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Input} & \textbf{Output} \\
+\hline
+8 & 9 \\
+-1 3 -2 5 3 -5 2 2 & \\
+\hline
+\end{tabular}
+\end{center}
+With a fusion of programming prowess and mathematical magic, Alice's algorithm unraveled the secret, exposing a maximum subarray sum of `9`. As the news spread, Alice became the talk of the town—an Algorithmic Alchemist, transforming numerical mysteries into wealth through the art of programming.
+
+\section*{Basic understanding of assigned topic}
+
+\subsection*{Introduction:}
+Data structures are essential in computer science for efficiently organizing and storing data, impacting the performance of algorithms. This overview focuses on key concepts in C++.
+
+\subsection*{Efficiency Concepts:}
+\textbf{Time Complexity:} Measures algorithm speed relative to input size (Big O notation).
+\textbf{\\Space Complexity:} Examines memory usage efficiency (Big O notation).
+
+\subsection*{Elementary Data Structures:}
+
+\textbf{Arrays:} Contiguous memory storage for elements of the same type.
+\\
+\textbf{Example:}
+
+\begin{lstlisting}[language=C++]
+     int numbers[5] = {1, 2, 3, 4, 5};
+     int element = numbers[2];  // Random access
+\end{lstlisting}
+\textbf{\\Records (Structures):} Groups different data types under one name.
+\\
+\textbf{Example:}
+\begin{lstlisting}[language=C++]
+     struct Student 
+     {
+         int ID;
+         std::string name;
+         float grade;
+     };
+     
+     int main()
+     {
+        Student myStudent = {123, "John Doe", 85.5};
+     }
+     
+\end{lstlisting}
+\textbf{\\Pointers:} Store memory addresses for dynamic memory use.
+\textbf{\\Example:}
+
+\begin{lstlisting}[language=C++]
+     int* intPointer;
+     int x = 10;
+     intPointer = &x;  // Point to variable x
+\end{lstlisting}
+
+\subsection*{Example of Random Access:}
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+int main() 
+{
+    int myArray[5] = {10, 20, 30, 40, 50};
+    int element = myArray[2];  // Random access
+    std::cout << "Element at index 2: " << element << std::endl;
+    return 0;
+}
+\end{lstlisting}
+
+\section*{Operations supported}
+
+\subsection*{Arrays}
+
+\textbf{Initialization: }An array is a collection of elements of the same data type stored in contiguous memory locations. It's initialized by specifying the data type and the number of elements.
+\begin{lstlisting}[language=C++]
+int numbers[5] = {1, 2, 3, 4, 5};
+\end{lstlisting}
+\textbf{\\Accessing Elements:}
+Elements in an array are accessed using their index. The index starts from 0, so \texttt{numbers[2]} refers to the third element.
+\begin{lstlisting}[language=C++]
+int element = numbers[2];  // Accessing the third element
+\end{lstlisting}
+\textbf{\\Modification:}
+Values in an array can be modified by assigning new values to specific indices.
+\begin{lstlisting}[language=C++]
+numbers[2] = 10;  // Modifying the third element
+\end{lstlisting}
+\textbf{\\Traversal: }Traversal involves accessing each element of the array. A loop is commonly used for this purpose.
+\begin{lstlisting}[language=C++]
+for (int i = 0; i < 5; ++i) 
+{
+    // Access elements using numbers[i]
+}
+\end{lstlisting}
+
+\subsection*{Records (Structures)}
+
+\textbf{Declaration: }A structure (or record) allows grouping different data types under a single name. It's declared using the \texttt{struct} keyword.
+
+\begin{lstlisting}[language=C++]
+struct Student 
+{
+    int ID;
+    std::string name;
+    float grade;
+};
+\end{lstlisting}
+
+\textbf{\\Initialization:}
+Instances of a structure are created by specifying values for each member.
+
+\begin{lstlisting}[language=C++]
+Student myStudent = {123, "John Doe", 85.5};
+\end{lstlisting}
+
+\textbf{\\Accessing Members}
+Individual members of a structure are accessed using the dot notation.
+
+\begin{lstlisting}[language=C++]
+int studentID = myStudent.ID;
+myStudent.grade = 90.0;
+\end{lstlisting}
+
+\subsection*{Pointers}
+
+\textbf{Declaration:}
+A pointer is a variable that stores the memory address of another variable. It's declared by appending \texttt{*} to the data type.
+
+\begin{lstlisting}[language=C++]
+int* intPointer;
+\end{lstlisting}
+\textbf{\\Initialization:}
+A pointer is initialized by assigning the address of a variable to it.
+
+\begin{lstlisting}[language=C++]
+int x = 10;
+intPointer = &x;  // intPointer now holds the address of x
+\end{lstlisting}
+\textbf{\\Dynamic Memory Allocation:}
+Pointers are commonly used for dynamic memory allocation with \texttt{new}.
+
+\begin{lstlisting}[language=C++]
+int* dynamicInt = new int;
+\end{lstlisting}
+\newpage
+\section*{Solution}
+
+\subsection*{Input:}
+An integer \( n \): the size of the array.\\
+An array of integers \( x_1, x_2, \ldots, x_n \).
+
+\subsection*{Output:}
+The maximum subarray sum.
+
+
+\subsection*{a) Intuition behind the solution:}
+The problem can be efficiently solved using Kadane's Algorithm, which involves iterating through the array and maintaining a running sum of the subarray. The key is to reset the sum to 0 whenever it becomes negative, ensuring that we always consider the maximum subarray sum.
+
+\subsection*{b) Solution steps:}
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSubarraySum(int arr[], int n) 
+{
+    int maxSum = INT_MIN;
+    int currentSum = 0;
+
+    for (int i = 0; i < n; ++i) 
+    {
+        currentSum += arr[i];
+
+        // If the current sum becomes negative, reset it to 0.
+        if (currentSum < 0) 
+        {
+            currentSum = 0;
+        }
+
+        // Update the maximum sum if the current sum is greater.
+        if (currentSum > maxSum) 
+        {
+            maxSum = currentSum;
+        }
+    }
+
+    return maxSum;
+}
+
+int main() 
+{
+    int n;
+    cin >> n;
+
+    int arr[n];
+    for (int i = 0; i < n; ++i) 
+    {
+        std::cin >> arr[i];
+    }
+
+    int result = maxSubarraySum(arr, n);
+    cout << result << std::endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{c) Complexity Analysis:}
+\textbf{Time Complexity:} \(O(n)\) - The algorithm iterates through the array once.\\
+\textbf{Space Complexity:} \(O(1)\) - The algorithm uses a constant amount of space regardless of the input size.\\
+This algorithm is efficient and suitable for large arrays, making it a practical solution for the given problem.
+
+\newpage
+\section*{Conclusion Comments}
+
+The Kadane's Algorithm for finding the maximum subarray sum in a given array is a highly efficient and widely-used approach. It is particularly useful in scenarios where the goal is to optimize the identification of the contiguous subarray with the maximum sum. Here are some points to consider:
+
+\textbf{Where it can be used:}
+
+\begin{itemize}
+    \item \textbf{Financial Analysis:} Kadane's Algorithm is employed in financial applications where analyzing time-series data, such as stock prices, requires identifying periods of maximum profitability or loss.
+    \item \textbf{Signal Processing:} In signal processing, it is utilized for detecting patterns in signals, where the maximum subarray sum corresponds to the most significant signal strength.
+    \item \textbf{Dynamic Programming:} Kadane's Algorithm is a classic example of dynamic programming and is applied in various problem-solving scenarios where optimal substructure is present.
+    \item \textbf{Data Mining:} The algorithm finds applications in data mining tasks where identifying patterns or trends within a dataset is crucial.
+\end{itemize}
+
+\textbf{Where it can't be used:}
+
+\begin{itemize}
+    \item \textbf{Non-contiguous Subarrays:} If the problem requires identifying the maximum sum over non-contiguous subarrays, Kadane's Algorithm is not suitable. It specifically targets contiguous subarrays.
+    \item \textbf{All Negative Numbers:} If the array consists entirely of negative numbers, the algorithm might not provide the desired result, as the maximum subarray sum would then be the single largest negative number.
+    \item \textbf{Global Optimization:} In scenarios where the goal is to optimize a global function considering non-contiguous elements, other algorithms or approaches might be more appropriate.
+\end{itemize}
+In summary, Kadane's Algorithm is a powerful tool for solving problems related to finding the maximum subarray sum in contiguous sequences. However, it is essential to assess the problem requirements to determine whether this algorithm aligns with the specific needs of the task at hand.
+
+\newpage
+\section*{Other Problem Links}
+
+\begin{enumerate}
+    \item Problem 1: \href{https://cses.fi/problemset/task/1163}{Traffic Lights}
+    \item Problem 2: \href{https://cses.fi/problemset/task/1164}{Room Allocation}
+    \item Problem 3: \href{https://cses.fi/problemset/task/2168}{Nested Ranges Check}
+\end{enumerate}
+
+\section*{References}
+
+\begin{itemize}
+    \item \url{https://www.geeksforgeeks.org/}
+    \item \url{https://www.w3schools.com/cpp/cpp_arrays.asp}
+    \item \url{https://www.openai.com}
+     \item \url{https://cses.fi/problemset/}
+\end{itemize}
+
+\end{document}
